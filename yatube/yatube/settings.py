@@ -16,7 +16,7 @@ PAGE_POSTS_COUNT = 10
 SECRET_KEY = 'bhp2v8#8^k8)@h011o8qo$&g(bhmu2^m1$th$d1$shfsv+$cfb'
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',

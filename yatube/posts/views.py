@@ -1,5 +1,7 @@
+import logging
 from functools import wraps
 
+from django.db.utils import IntegrityError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -132,16 +134,17 @@ def follow_index(request):
     paginator = Paginator(post_list, settings.PAGE_POSTS_COUNT)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {
-        'page_obj': page_obj,
-    }
-    return render(request, 'posts/follow.html', context)
+    return render(request, 'posts/follow.html', {'page_obj': page_obj, })
 
 
 @login_required
 def profile_follow(request, username):
-    Follow.objects.create(
-        author=User.objects.get(username=username), user=request.user)
+    try:
+        Follow.objects.create(
+            author=User.objects.get(username=username), user=request.user)
+    except IntegrityError as e:
+        logging.exception(e)
+        return redirect('posts:profile', username=username)
     return redirect('posts:profile', username=username)
 
 

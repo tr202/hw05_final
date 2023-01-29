@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import CheckConstraint, Q, F
 
 from .utils import slugify
 from .validators import not_empty_text_validator as netv
@@ -116,6 +117,12 @@ class Follow(models.Model):
 
     class Meta:
         unique_together = (('user', 'author'),)
+        constraints = [
+            CheckConstraint(
+                name='no_follow_author',
+                check=~Q(user=F('author')),
+            ),
+        ]
         verbose_name = 'подписка'
         verbose_name_plural = 'Подписки'
         ordering = ('-follow_at',)
