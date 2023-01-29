@@ -1,0 +1,26 @@
+{% extends "users/includes/user_form_format.html" %}
+{% block title %}Войти{% endblock %}
+{% block aut_user_content %}
+{% load user_filters %}
+  <div class="card-header">
+    Войти на сайт
+  </div>
+  <div class="card-body">
+    {% include 'users/includes/user_form_errors.html' %}
+    <form method="post"
+      {% if action_url %}
+        action="{% url action_url %}"
+      {% endif %}
+    >
+    {% include 'users/includes/user_form.html' %}
+    <div class="col-md-6 offset-md-4">
+      <button type="submit" class="btn btn-primary">
+        Войти
+      </button>
+      <a href="{% url 'users:password_reset_form' %}" class="btn btn-link">
+        Забыли пароль?
+      </a>
+    </div>
+    </form>
+  </div>
+{% endblock %}

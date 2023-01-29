@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+  Записи сообщества {{ group.title }}
+{% endblock %}
+{% block content %}
+  <h1>Лев Толстой – зеркало русской революции.</h1>
+  <h1>{% block header %}{{ group.title }}{% endblock %}</h1>
+  <span><p>{{ group.description }}</p></span>
+  {% for s in ''%}{% endfor %}
+  {% include 'posts/includes/posts_view.html' %}
+{% endblock %}
+  

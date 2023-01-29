@@ -1,3 +1,15 @@
+# old_migrations
+old_m
+
+# Media
+media/
+
+# Debug
+sent_emails/
+
+# Static files
+static/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

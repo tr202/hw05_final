@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if title %}{{ title }}{% else %}
+  Последние обновления на сайте
+{% endif%}
+{% endblock %}
+{% block content %}
+{% include 'posts/includes/switcher.html' %}
+<h1>
+  {% if title %}{{ title }}{% else %}
+    Последние обновления на сайте <br>
+  {% endif%}
+</h1>
+{% include 'posts/includes/posts_view.html' %}
+{% endblock %}
