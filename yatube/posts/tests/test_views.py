@@ -67,7 +67,6 @@ class PostContextTest(TestCase):
         self.follow = mixer.blend(Follow, user=self.user, author=self.author)
         post = mixer.blend(Post, author=self.author)
         cache.clear()
-
         response = self.authorized_client.get(
             reverse(FOLLOWED_AUTHORS_TAPE))
         page_obj_list = response.context.get('page_obj')
@@ -103,7 +102,7 @@ class PostContextTest(TestCase):
                 response = self.authorized_client.get(urls[page].url)
             context = response.context
             self.assertIsInstance(context.get('form'), PostForm)
-        self.assertEqual(context.get('post_id'), self.post.pk)
+        self.assertEqual(context.get('post'), self.post)
         self.assertEqual(context.get('is_edit'), True)
         form_fields = {
             'text': forms.fields.CharField,

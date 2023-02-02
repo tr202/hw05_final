@@ -39,7 +39,7 @@ class PostURLTests(TestCase):
         self.authorized_client_no_post_author.force_login(
             self.user_no_post_author)
         self.clients = (
-            self.guest_client, self.authorized_client_no_post_author)
+            self.guest_client, self.authorized_client_no_post_author,)
 
     def test_unexisting_page_get_404(self):
         """Несуществующая страница"""

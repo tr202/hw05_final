@@ -23,7 +23,7 @@ UPLOADED = SimpleUploadedFile(
 OBJECT_RELATED_URL_PARAMS = {
     # name_url:(object:orm_name)
     'slug': ('group', 'slug',),
-    'post_id': ('post', 'id',),
+    'pk': ('post', 'pk',),
     'username': ('user', 'username',),
 }
 
@@ -34,10 +34,10 @@ CONFIG_TEST_URLS = {
     'group_list': ['/group/{slug}/', 'posts/group_list.html'],
     'profile': ['/profile/{username}/', 'posts/profile.html'],
     'post_create': ['/create/', 'posts/create_post.html', '/auth/login/'],
-    'post_detail': ['/posts/{post_id}/', 'posts/post_detail.html'],
+    'post_detail': ['/posts/{pk}/', 'posts/post_detail.html'],
     'post_edit': [
-        '/posts/{post_id}/edit/', 'posts/create_post.html',
-        '/posts/{post_id}/'],
+        '/posts/{pk}/edit/', 'posts/create_post.html',
+        '/posts/{pk}/'],
 }
 COMMENTS_URL = 'comment/'
 COMMENTS_UNAUTHORIZED_REDIRECT = '/auth/login/'

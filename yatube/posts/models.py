@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models import CheckConstraint, Q, F
+from django.db.models import CheckConstraint, F, Q, UniqueConstraint
 
 from .utils import slugify
 from .validators import not_empty_text_validator as netv
@@ -80,13 +80,12 @@ class Comment(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='comments',
-        verbose_name='Автор',
+        verbose_name='Автор комментария',
     )
 
     text = models.TextField(
         'Текст комментария',
         validators=[netv],
-        help_text='Текст нового комментария',
     )
 
     created = models.DateTimeField('Дата публикации', auto_now_add=True,)
@@ -116,12 +115,15 @@ class Follow(models.Model):
     follow_at = models.DateTimeField('Дата публикации', auto_now_add=True,)
 
     class Meta:
-        unique_together = (('user', 'author'),)
         constraints = [
             CheckConstraint(
                 name='no_follow_author',
                 check=~Q(user=F('author')),
             ),
+            UniqueConstraint(
+                name='no_double_follow',
+                fields=['user', 'author']
+            )
         ]
         verbose_name = 'подписка'
         verbose_name_plural = 'Подписки'

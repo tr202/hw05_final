@@ -8,7 +8,6 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'
-# LOGOUT_REDIRECT_URL = 'posts:index'
 
 EMPTY_VALUE_DISPLAY = '-пусто-'
 PAGE_POSTS_COUNT = 10
@@ -16,7 +15,7 @@ PAGE_POSTS_COUNT = 10
 SECRET_KEY = 'bhp2v8#8^k8)@h011o8qo$&g(bhmu2^m1$th$d1$shfsv+$cfb'
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -119,5 +118,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
-
-INDEX_PAGE_CACHE_TIMEOUT = 20
