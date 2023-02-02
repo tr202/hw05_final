@@ -56,8 +56,8 @@ class PostCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.save()
-        return redirect(reverse('posts:post_detail', kwargs={
-            'pk': form.instance.pk
+        return redirect(reverse('posts:profile', kwargs={
+            'username': form.instance.author.username
         }))
 
 
